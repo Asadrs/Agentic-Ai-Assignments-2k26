@@ -1,0 +1,100 @@
+Assignment-01
+Descriptive Questions
+
+1) Difference between "training" a model and "inference"?
+
+Training is the process of teaching the model by showing it many examples with correct answers so it can learn patterns (it adjusts its internal parameters).
+
+Inference is using the already-trained model to make predictions on new, unseen data.
+
+Everyday examples:
+- Training: Studying past exam papers + solutions so you learn how to solve similar questions.
+- Inference: Sitting in the actual exam and answering new questions using what you learned.
+
+
+2) What does the "weight" in a neural network actually control?
+
+A weight controls how important a particular input (feature) is when the network makes a decision. Higher weight = that feature has stronger influence on the final output.
+
+Apartment analogy:
+Imagine choosing an apartment. Features might be: distance to office, rent price, size, noise level.
+- A high weight on “distance to office” means you care a lot about commute time.
+- A low (or negative) weight on “rent” means expensive rent strongly pushes you away from choosing that apartment.
+The network multiplies each feature by its weight and combines them to decide “good apartment or not.”
+
+
+3) Difference between open-source model (Llama/Qwen) and closed model (GPT/Claude)
+
+Open-source (Llama, Qwen):
+- You can download the full model weights and code
+- You can run it on your own computer
+- You can fine-tune / modify it
+- Free to download
+
+Closed model (GPT, Claude):
+- You cannot download the weights
+- You can only use it through their website or API
+- You cannot fully fine-tune or run it offline without permission
+- You usually pay per use
+
+
+4) Why might a free model still cost money to run?
+
+Even if the model is free to download, running it needs:
+- Powerful computer / GPU
+- Electricity
+- Cloud servers (if you don’t have a strong PC)
+Large models need expensive hardware, so many people rent cloud GPUs which cost money.
+
+
+5) In the equation y = mx + b, what does the slope (m) tell you?
+
+The slope m tells you how much the output (y) changes when the input (x) increases by 1.
+
+- Positive m → as input increases, output increases
+- Negative m → as input increases, output decreases
+- Larger absolute value of m → stronger relationship
+
+
+Programming Questions
+
+1) Linear Regression – study hours vs performance
+
+Code:
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Sample data (Hours vs Performance)
+hours = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).reshape(-1, 1)
+performance = np.array([45, 50, 55, 60, 65, 70, 75, 80, 85, 90])
+
+model = LinearRegression()
+model.fit(hours, performance)
+
+prediction = model.predict([[20]])
+print("Predicted performance for 20 hours of study:", prediction[0])
+
+# Output: Predicted performance for 20 hours of study: 140.0
+
+
+2) KNeighborsClassifier on Wine dataset
+
+Code:
+
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+wine = load_wine()
+X, y = wine.data, wine.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train, y_train)
+
+accuracy = knn.score(X_test, y_test)
+print("Test accuracy:", accuracy)
+
+# Typical Output: Test accuracy: 0.7222222222222222
