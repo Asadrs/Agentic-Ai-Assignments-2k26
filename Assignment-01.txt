@@ -1,100 +1,63 @@
-Assignment-01
-Descriptive Questions
+# Assignment-01 – Descriptive Questions
 
-1) Difference between "training" a model and "inference"?
+### 1. Difference between "training" a model and "inference"
 
-Training is the process of teaching the model by showing it many examples with correct answers so it can learn patterns (it adjusts its internal parameters).
+**Training** is the process of teaching a machine learning model by showing it many examples with correct answers. During training, the model adjusts its internal parameters (weights) to learn patterns from the data.
 
-Inference is using the already-trained model to make predictions on new, unseen data.
+**Inference** is the process of using an already trained model to make predictions on new, unseen data.
 
-Everyday examples:
-- Training: Studying past exam papers + solutions so you learn how to solve similar questions.
-- Inference: Sitting in the actual exam and answering new questions using what you learned.
+**Everyday examples:**
+- **Training**: A student studies many past exam papers with solutions to learn how to solve questions.
+- **Inference**: The same student sits in the actual exam and answers new questions using what they learned.
 
+---
 
-2) What does the "weight" in a neural network actually control?
+### 2. What does the "weight" in a neural network control?
 
-A weight controls how important a particular input (feature) is when the network makes a decision. Higher weight = that feature has stronger influence on the final output.
+A **weight** controls how important a particular input (feature) is when the neural network makes a decision.  
+Higher weight = stronger influence of that feature on the final output.
 
-Apartment analogy:
-Imagine choosing an apartment. Features might be: distance to office, rent price, size, noise level.
-- A high weight on “distance to office” means you care a lot about commute time.
-- A low (or negative) weight on “rent” means expensive rent strongly pushes you away from choosing that apartment.
-The network multiplies each feature by its weight and combines them to decide “good apartment or not.”
+**Decision-making analogy (Choosing an apartment):**
 
+Imagine you are choosing an apartment. Possible features:
+- Distance to office
+- Rent price
+- Size of the apartment
+- Noise level
 
-3) Difference between open-source model (Llama/Qwen) and closed model (GPT/Claude)
+- If the weight for “distance to office” is high, it means you care a lot about commute time.
+- If the weight for “rent” is high (or negative), expensive rent will strongly push you away from choosing that apartment.
 
-Open-source (Llama, Qwen):
-- You can download the full model weights and code
-- You can run it on your own computer
-- You can fine-tune / modify it
-- Free to download
+The neural network multiplies each feature by its weight and combines the results to decide whether the apartment is good or not.
 
-Closed model (GPT, Claude):
-- You cannot download the weights
-- You can only use it through their website or API
-- You cannot fully fine-tune or run it offline without permission
-- You usually pay per use
+---
 
+### 3. Difference between Open-source and Closed models
 
-4) Why might a free model still cost money to run?
+| Aspect              | Open-source (Llama, Qwen)                          | Closed (GPT, Claude)                              |
+|---------------------|----------------------------------------------------|---------------------------------------------------|
+| Model weights       | Fully downloadable                                 | Not available                                     |
+| What you can do     | Run locally, fine-tune, modify, deploy anywhere    | Only use via API or website                       |
+| Transparency        | High (you can inspect the model)                   | Low (black-box)                                   |
+| Cost                | Free to download (you pay only for compute)        | Usually pay per token / subscription              |
 
-Even if the model is free to download, running it needs:
-- Powerful computer / GPU
+---
+
+### 4. Why does a free model still cost money to run?
+
+Even if the model is free to download, running it requires:
+- Powerful hardware (especially GPU)
 - Electricity
-- Cloud servers (if you don’t have a strong PC)
-Large models need expensive hardware, so many people rent cloud GPUs which cost money.
+- Cloud servers (if you don’t have a strong computer)
 
+Large language models need expensive computing power, so most people rent cloud GPUs, which costs money.
 
-5) In the equation y = mx + b, what does the slope (m) tell you?
+---
 
-The slope m tells you how much the output (y) changes when the input (x) increases by 1.
+### 5. What does the slope (m) tell you in the equation y = mx + b?
+
+The slope **m** tells you **how much the output (y) changes when the input (x) increases by 1**.
 
 - Positive m → as input increases, output increases
 - Negative m → as input increases, output decreases
-- Larger absolute value of m → stronger relationship
-
-
-Programming Questions
-
-1) Linear Regression – study hours vs performance
-
-Code:
-
-import numpy as np
-from sklearn.linear_model import LinearRegression
-
-# Sample data (Hours vs Performance)
-hours = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).reshape(-1, 1)
-performance = np.array([45, 50, 55, 60, 65, 70, 75, 80, 85, 90])
-
-model = LinearRegression()
-model.fit(hours, performance)
-
-prediction = model.predict([[20]])
-print("Predicted performance for 20 hours of study:", prediction[0])
-
-# Output: Predicted performance for 20 hours of study: 140.0
-
-
-2) KNeighborsClassifier on Wine dataset
-
-Code:
-
-from sklearn.datasets import load_wine
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-
-wine = load_wine()
-X, y = wine.data, wine.target
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train, y_train)
-
-accuracy = knn.score(X_test, y_test)
-print("Test accuracy:", accuracy)
-
-# Typical Output: Test accuracy: 0.7222222222222222
+- Larger absolute value of m → stronger relationship between input and output
